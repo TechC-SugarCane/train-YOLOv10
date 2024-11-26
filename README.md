@@ -90,7 +90,7 @@ pip install -e .
 ```bash
 # datasetsのディレクトリを現在のディレクトリに変更
 # デフォルトだと../datasetsが設定されている
-yolo settings datasets_dir=.
+yolo settings datasets_dir=../manage-dataset/datasets
 ```
 
 ## Training
@@ -112,10 +112,10 @@ git clone git@github.com:TechC-SugarCane/manage-dataset.git
 
 ```bash
 # サトウキビをファインチューニングするコマンド
-yolo detect train cfg='cfg/sugarcane.yaml' data=datasets/sugarcane/data.yaml model=weights/yolov10x.pt name='yolov10x-sugarcane' epochs=300 batch=16 imgsz=640 device=0
+yolo detect train cfg='cfg/sugarcane.yaml' data=../manage-dataset/datasets/sugarcane/data.yaml model=weights/yolov10x.pt name='yolov10x-sugarcane' epochs=300 batch=16 imgsz=640 device=0
 
 # パイナップルをファインチューニングするコマンド
-yolo detect train cfg='cfg/pineapple.yaml' data=datasets/pineapple/data.yaml model=weights/yolov10x.pt name='yolov10x-pineapple' epochs=300 batch=16 imgsz=640 device=0
+yolo detect train cfg='cfg/pineapple.yaml' data=../manage-dataset/datasets/pineapple/data.yaml model=weights/yolov10x.pt name='yolov10x-pineapple' epochs=300 batch=16 imgsz=640 device=0
 ```
 
 ※ 上記を実行すると`yolov8n.pt`がダウンロードされますが、AMPというものの確認用に追加されているだけらしいので気にしなくて大丈夫です。
