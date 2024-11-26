@@ -97,22 +97,12 @@ yolo settings datasets_dir=.
 
 事前学習済みモデルとして`yolov10x.pt`を使用するので、[公式GitHubのリリース](https://github.com/THU-MIG/yolov10/releases/download/v1.1/yolov10x.pt)からダウンロードして`weights`ディレクトリに配置してください。
 
+データセットは 一階層上に[manage-datasetリポジトリ](https://github.com/TechC-SugarCane/manage-dataset)をcloneし、[README](https://github.com/TechC-SugarCane/manage-dataset/blob/main/README.md)に従ってダウンロードしてください。
 
-学習に使用するデータセットはRoboflowというサービスを使用して作成しています。
-
-学習や評価に使用するデータセットは、[Roboflow](https://universe.roboflow.com/techcsugarcane/)にありますが、手動でダウンロードするのは面倒なので下記コマンドを実行してdatasetsをダウンロードしてください。
-
-```bash
-# Sugarcane Version 4
-$sugarcane_url="https://app.roboflow.com/ds/T2zV0t9XVG?key=VldKEnvBjY"
-# Pineapple Version 2
-$pineapple_url="https://app.roboflow.com/ds/hfpq9ajFvM?key=5Rq1mFJi7w"
-
-# mac向け
-bash download_dataset.sh $sugarcane_url $pineapple_url
-
-# windows向け
-./download_dataset.ps1 -SugarcaneUrl $sugarcane_url -PineappleUrl $pineapple_url
+```shell
+# clone済みの人はスキップ
+cd ..
+git clone git@github.com:TechC-SugarCane/manage-dataset.git
 ```
 
 学習後の結果は`runs/detect/<name(番号)>`に保存されます。
