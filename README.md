@@ -97,25 +97,22 @@ yolo settings datasets_dir=.
 
 事前学習済みモデルとして`yolov10x.pt`を使用するので、[公式GitHubのリリース](https://github.com/THU-MIG/yolov10/releases/download/v1.1/yolov10x.pt)からダウンロードして`weights`ディレクトリに配置してください。
 
+
 学習に使用するデータセットはRoboflowというサービスを使用して作成しています。
 
-学習や評価に使用するデータセットは、
-
-- [サトウキビ](https://universe.roboflow.com/hoku/sugarcane-3vhxz/dataset/11)
-- [パイナップル](https://universe.roboflow.com/hoku/pineapple-thsih/dataset/7)
-
-にありますが、手動でダウンロードするのは面倒なので`huggingface`にdatasetsをまとめてあります。
-
-下記コマンドを実行して、datasetsをダウンロードしてください。
+学習や評価に使用するデータセットは、[Roboflow](https://universe.roboflow.com/techcsugarcane/)にありますが、手動でダウンロードするのは面倒なので下記コマンドを実行してdatasetsをダウンロードしてください。
 
 ```bash
-# Make sure you have git-lfs installed (https://git-lfs.com)
-git lfs install
+# Sugarcane Version 4
+$sugarcane_url="https://app.roboflow.com/ds/T2zV0t9XVG?key=VldKEnvBjY"
+# Pineapple Version 2
+$pineapple_url="https://app.roboflow.com/ds/hfpq9ajFvM?key=5Rq1mFJi7w"
 
-git clone https://huggingface.co/datasets/TechC-SugarCane/yolov10-datasets
+# mac向け
+bash download_dataset.sh $sugarcane_url $pineapple_url
 
-# git push時に発生するエラーを無効化
-git config lfs.https://github.com/TechC-SugarCane/train-YOLOv10.git/info/lfs.locksverify false
+# windows向け
+./download_dataset.ps1 -SugarcaneUrl $sugarcane_url -PineappleUrl $pineapple_url
 ```
 
 学習後の結果は`runs/detect/<name(番号)>`に保存されます。
@@ -125,10 +122,10 @@ git config lfs.https://github.com/TechC-SugarCane/train-YOLOv10.git/info/lfs.loc
 
 ```bash
 # サトウキビをファインチューニングするコマンド
-yolo detect train cfg='cfg/sugarcane.yaml' data=yolov10-datasets/sugarcane/data.yaml model=weights/yolov10x.pt name='yolov10x-sugarcane' epochs=300 batch=16 imgsz=640 device=0
+yolo detect train cfg='cfg/sugarcane.yaml' data=datasets/sugarcane/data.yaml model=weights/yolov10x.pt name='yolov10x-sugarcane' epochs=300 batch=16 imgsz=640 device=0
 
 # パイナップルをファインチューニングするコマンド
-yolo detect train cfg='cfg/pineapple.yaml' data=yolov10-datasets/pineapple/data.yaml model=weights/yolov10x.pt name='yolov10x-pineapple' epochs=300 batch=16 imgsz=640 device=0
+yolo detect train cfg='cfg/pineapple.yaml' data=datasets/pineapple/data.yaml model=weights/yolov10x.pt name='yolov10x-pineapple' epochs=300 batch=16 imgsz=640 device=0
 ```
 
 ※ 上記を実行すると`yolov8n.pt`がダウンロードされますが、AMPというものの確認用に追加されているだけらしいので気にしなくて大丈夫です。
