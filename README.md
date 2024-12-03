@@ -97,7 +97,7 @@ yolo settings datasets_dir=../manage-dataset/
 
 事前学習済みモデルとして`yolov10x.pt`を使用するので、[公式GitHubのリリース](https://github.com/THU-MIG/yolov10/releases/download/v1.1/yolov10x.pt)からダウンロードして`weights`ディレクトリに配置してください。
 
-データセットは 一階層上に[manage-datasetリポジトリ](https://github.com/TechC-SugarCane/manage-dataset)をcloneし、[README](https://github.com/TechC-SugarCane/manage-dataset/blob/main/README.md)に従ってダウンロードしてください。
+データセットは 一階層上に[manage-datasetリポジトリ](https://github.com/TechC-SugarCane/manage-dataset)をcloneし、[manage-dataset/README](https://github.com/TechC-SugarCane/manage-dataset/blob/main/README.md)に従ってダウンロードしてください。
 
 ```shell
 # clone済みの人はスキップ
