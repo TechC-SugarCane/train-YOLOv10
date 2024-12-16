@@ -126,6 +126,17 @@ yolo detect train cfg='cfg/pineapple.yaml' data=data/pineapple.yaml model=weight
 - サトウキビ: `sugarcane.yaml`
 - パイナップル: `pineapple.yaml`
 
+## Export
+
+モデルをONNXにエクスポートする際は、下記のコマンドを実行してください。
+
+```sh
+# End-to-End ONNX
+# <name(番号)>は、学習後の結果のディレクトリ名を指定してください
+yolo export model="runs/detect/<name(番号)>/weights/best.pt" format=onnx opset=13 simplify device=0
+```
+
+
 ## コントリビューター向けガイドライン
 
 コントリビューター向けのガイドラインについては、こちらの[CONTRIBUTING.md](https://github.com/TechC-SugarCane/.github/blob/main/CONTRIBUTING.md)を参照してください。
@@ -150,20 +161,4 @@ model.push_to_hub("<your-hf-username-or-organization/yolov10-finetuned-crop-dete
 
 # you can also pass `private=True` if you don't want everyone to see your model
 model.push_to_hub("<your-hf-username-or-organization/yolov10-finetuned-crop-detection", private=True)
-```
-
-## Export
-後で活用
-```
-# End-to-End ONNX
-yolo export model=jameslahm/yolov10{n/s/m/b/l/x} format=onnx opset=13 simplify
-# Predict with ONNX
-yolo predict model=yolov10n/s/m/b/l/x.onnx
-
-# End-to-End TensorRT
-yolo export model=jameslahm/yolov10{n/s/m/b/l/x} format=engine half=True simplify opset=13 workspace=16
-# or
-trtexec --onnx=yolov10n/s/m/b/l/x.onnx --saveEngine=yolov10n/s/m/b/l/x.engine --fp16
-# Predict with TensorRT
-yolo predict model=yolov10n/s/m/b/l/x.engine
 ```
